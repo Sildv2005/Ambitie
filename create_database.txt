@@ -1,5 +1,5 @@
-CREATE DATABASE_NAME;
-USE DATABASE_NAME;
+CREATE ambitie_game;
+USE ambitie_game;
 
 CREATE TABLE user_info (
     id INT AUTO_INCREMENT PRIMARY KEY,
