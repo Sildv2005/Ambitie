@@ -3,9 +3,9 @@
 require_once './vendor/autoload.php';
 
 $host = 'localhost';
-$db = '';
-$user = 'root';
-$pass = '';
+$db = 'ambitie_game';
+$user = 'ambitie_game';
+$pass = 'ambitie_game';
 $charset = 'utf8mb4';
 
 // Debug output - Uncomment if needed for debugging
