@@ -1,4 +1,7 @@
 CREATE DATABASE ambitie_game;
+CREATE USER 'ambitie_game'@'localhost' IDENTIFIED BY 'ambitie_game';
+GRANT ALL PRIVILEGES ON ambitie_game.* TO 'ambitie_game'@'localhost';
+FLUSH PRIVILEGES;
 USE ambitie_game;
 
 CREATE TABLE user_info (
