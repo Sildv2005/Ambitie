@@ -1,0 +1,7 @@
+{
+    "name": "ambitie_project/main",
+    "require": {
+        "robthree/twofactorauth": "^2.1"
+    }
+
+}
