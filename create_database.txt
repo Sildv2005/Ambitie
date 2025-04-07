@@ -1,4 +1,4 @@
-CREATE ambitie_game;
+CREATE DATABASE ambitie_game;
 USE ambitie_game;
 
 CREATE TABLE user_info (
