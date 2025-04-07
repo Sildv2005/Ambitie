@@ -7,11 +7,6 @@ session_start();
 
 $message = '';
 
-// Capture time zone from POST data and store it in the session
-if (isset($_POST['timezone'])) {
-    $_SESSION['timezone'] = $_POST['timezone'];
-}
-
 // Rate Limiting Check
 if (isset($_SESSION['login_attempts']) && $_SESSION['login_attempts'] >= 5) {
     if (isset($_SESSION['block_time']) && (time() - $_SESSION['block_time']) <= 5) {
