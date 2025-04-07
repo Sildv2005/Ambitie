@@ -93,12 +93,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
         <input type="submit" value="Login">
     </form>
 
-    <script>
-        // Use JavaScript to capture the user's time zone and insert it into the hidden form field
-        document.getElementById('timezone').value = Intl.DateTimeFormat().resolvedOptions().timeZone;
-    </script>
-
-    <p><a href="password_recovery.php">Forgot your password?</a></p>
     <p>Don't have an account? <a href="register.php">Register here</a></p>
 </body>
 <footer>
