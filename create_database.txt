@@ -14,7 +14,7 @@ CREATE TABLE user_info (
 );
 
 CREATE TABLE highscores (
-    player_name VARCHAR(16) UNIQUE NOT NULL,
+    player_name VARCHAR(16) NOT NULL,
     level TINYINT NOT NULL,
     time VARCHAR(8) NOT NULL,
     best_lap_time VARCHAR(8) NOT NULL
