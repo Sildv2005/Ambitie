@@ -15,9 +15,9 @@ CREATE TABLE user_info (
 
 CREATE TABLE highscores (
     player_name VARCHAR(16) UNIQUE NOT NULL,
-    level TINYINT NOT NULL
+    level TINYINT NOT NULL,
     time TIMESTAMP NOT NULL,
-    best_lap_time TIMESTAMP NOT NULL,
+    best_lap_time TIMESTAMP NOT NULL
 );
 
 # Ghost timcoords
