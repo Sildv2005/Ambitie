@@ -1,7 +1,9 @@
 {
     "name": "ambitie_project/main",
     "require": {
-        "robthree/twofactorauth": "^2.1"
+        "robthree/twofactorauth": "^2.1",
+        "twig/twig": "^3.5",
+        "vlucas/phpdotenv": "^5.6"
     }
 
 }
