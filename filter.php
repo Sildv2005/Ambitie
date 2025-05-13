@@ -42,24 +42,27 @@ if (isset($_GET['logout'])) {
     exit();
 }
 
-// Execute Query
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['query'])) {
-    $query = $_POST['query'];
-    $query_result = ['columns' => [], 'rows' => []];
+// Execute default highscores query with optional filter
+$filter = $_GET['filter'] ?? '';
+$query_result = ['columns' => [], 'rows' => []];
 
-    if ($result = $db->query($query)) {
-        $fields = $result->fetch_fields();
-        foreach ($fields as $field) {
-            $query_result['columns'][] = $field->name;
-        }
+$sql = "SELECT * FROM highscores";
+if (!empty($filter)) {
+    $filter_safe = $db->real_escape_string($filter);
+    $sql .= " WHERE player_name = '$filter_safe'";
+}
 
-        while ($row = $result->fetch_assoc()) {
-            $query_result['rows'][] = $row;
-        }
-    } else {
-        $query_error = "Error: " . $db->error;
-        echo "Query error: $query_error\n";
+if ($result = $db->query($sql)) {
+    $fields = $result->fetch_fields();
+    foreach ($fields as $field) {
+        $query_result['columns'][] = $field->name;
     }
+
+    while ($row = $result->fetch_assoc()) {
+        $query_result['rows'][] = $row;
+    }
+} else {
+    $query_error = "Error: " . $db->error;
 }
 
 // Initialize Twig
@@ -74,6 +77,7 @@ echo $twig->render('filter.twig', [
     'error' => $error ?? null,
     'query_result' => $query_result ?? null,
     'query_error' => $query_error ?? null,
+    'filter' => htmlspecialchars($filter ?? '', ENT_QUOTES, 'UTF-8'),
 ]);
 
 ?>
