@@ -1,59 +1,61 @@
 <!DOCTYPE html>
-<html	lang="en">
-	<head>
-		{% include '../partials/head.twig' %}
-	</head>
-	<body>
-		<h2>
-			Highscores
-		</h2>
-		{% if not session.user_logged_in %}
-			<p>not logged in</p><br>
-		{% else %}
-			<p>logged in</p><br>
-		{% endif %}
-		<form	method="get">
-			<label>
-				Filter by Player Name:
-			</label>
-			<input	type="text"	name="filter"	value="{{ filter|e }}">
-			<br>
-			<br>
-			<input	type="submit"	value="Apply Filter">
-		</form>
+<html lang="en">
+<head>
+    {% include '../partials/head.twig' %}
+    <style>
+        table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #444444; }
+        th, td { border: 1px solid black; padding: 5px; text-align: left; }
+        th { background-color: #888; }
+        .remove-button-form { display: inline; }
+    </style>
+</head>
+<body>
+    <h2>Highscores</h2>
 
-		{% if query_result is defined %}
-			<h3>
-				Results:
-			</h3>
-			<table>
-				<tr>
-					{% for column in query_result.columns %}
-						<th>
-							{{ column }}
-						</th>
-					{% endfor %}
-				</tr>
-				{% for row in query_result.rows %}
-					<tr>
-						{% for value in row %}
-							<td>
-								{{ value }}
-							</td>
-						{% endfor %}
-					</tr>
-				{% endfor %}
-			</table>
-		{% else %}
-			<p>
-				No results found.
-			</p>
-		{% endif %}
+    {% if not session.user_logged_in %}
+        <p>not logged in</p><br>
+    {% else %}
+        <p>logged in</p><br>
+    {% endif %}
 
-		<p>
-			<a	href="leaderboard.php?logout">
-				Logout
-			</a>
-		</p>
-	</body>
+    <form method="get">
+        <label>Filter by Player Name:</label>
+        <input type="text" name="filter" value="{{ filter|e }}">
+        <br><br>
+        <input type="submit" value="Apply Filter">
+    </form>
+
+    {% if query_result is defined %}
+        <h3>Results:</h3>
+        <table>
+            <tr>
+                {% if session.user_logged_in %}
+                    <th>Action</th>
+                {% endif %}
+                {% for column in query_result.columns %}
+                    <th>{{ column }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in query_result.rows %}
+                <tr>
+                    {% if session.user_logged_in %}
+                        <td>
+                            <form method="post" action="leaderboard.php" class="remove-button-form">
+                                <input type="hidden" name="remove_player_name" value="{{ row.player_name }}">
+                                <input type="submit" name="remove_time" value="Remove time">
+                            </form>
+                        </td>
+                    {% endif %}
+                    {% for value in row %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </table>
+    {% else %}
+        <p>No results found.</p>
+    {% endif %}
+
+    <p><a href="leaderboard.php?logout">Logout</a></p>
+</body>
 </html>

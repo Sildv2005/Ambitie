@@ -21,6 +21,14 @@ if (isset($_GET['logout'])) {
     exit();
 }
 
+// Handle Time Removal
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_time'], $_POST['remove_player_name']) && !empty($_SESSION['user_logged_in'])) {
+    $player_name = $db->real_escape_string($_POST['remove_player_name']);
+    $db->query("DELETE FROM highscores WHERE player_name = '$player_name'");
+    header("Location: leaderboard.php" . (!empty($filter) ? "?filter=" . urlencode($filter) : ""));
+    exit();
+}
+
 // Execute default highscores query with optional filter
 $filter = $_GET['filter'] ?? '';
 $query_result = ['columns' => [], 'rows' => []];
