@@ -6,10 +6,6 @@ use Twig\Loader\FilesystemLoader;
 require_once './vendor/autoload.php';
 
 session_start();
-if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
-    header('Location: login.php');
-    exit();
-}
 
 // Database Connection
 $db = new mysqli("localhost", "ambitie_game", "ambitie_game", "ambitie_game");
