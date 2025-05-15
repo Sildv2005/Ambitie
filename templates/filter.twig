@@ -1,86 +1,54 @@
 <!DOCTYPE html>
-<html lang="en">
+<html	lang="en">
 	<head>
 		{% include '../partials/head.twig' %}
-		<style>
-			body {
-				font-family: Arial, sans-serif;
-				padding: 20px;
-				background-color: #000000;
-				color: white;
-			}
-			textarea,
-			input {
-				width: auto;
-			}
-			h2,
-			label {
-				color: white;
-			}
-			table {
-				width: 100%;
-				border-collapse: collapse;
-				margin-top: 20px;
-				background-color: #444444;
-			}
-			th,
-			td {
-				border: 1px solid black;
-				padding: 5px;
-				text-align: left;
-			}
-			th {
-				background-color: #888;
-			}
-			.error {
-				color: red;
-			}
-		</style>
 	</head>
 	<body>
-		{% if not session.db_logged_in %}
-			<h2>Login to MySQL</h2>
-			<form method="post">
-				<label>Username:</label>
-				<input type="text" name="username" required><br><br>
-				<label>Password:</label>
-				<input type="password" name="password" required><br><br>
-				<input type="submit" value="Login">
-			</form>
-			{% if error %}
-				<p class="error">{{ error }}</p>
-			{% endif %}
-		{% else %}
-			<h2>Highscores</h2>
-			<form method="get">
-				<label>Filter by Player Name:</label>
-				<input type="text" name="filter" value="{{ filter|e }}"><br><br>
-				<input type="submit" value="Apply Filter">
-			</form>
+		<h2>
+			Highscores
+		</h2>
+		<form	method="get">
+			<label>
+				Filter by Player Name:
+			</label>
+			<input	type="text"	name="filter"	value="{{ filter|e }}">
+			<br>
+			<br>
+			<input	type="submit"	value="Apply Filter">
+		</form>
 
-			{% if query_result is defined %}
-				<h3>Results:</h3>
-				<table>
+		{% if query_result is defined %}
+			<h3>
+				Results:
+			</h3>
+			<table>
+				<tr>
+					{% for column in query_result.columns %}
+						<th>
+							{{ column }}
+						</th>
+					{% endfor %}
+				</tr>
+				{% for row in query_result.rows %}
 					<tr>
-						{% for column in query_result.columns %}
-							<th>{{ column }}</th>
+						{% for value in row %}
+							<td>
+								{{ value }}
+							</td>
 						{% endfor %}
 					</tr>
-					{% for row in query_result.rows %}
-						<tr>
-							{% for value in row %}
-								<td>{{ value }}</td>
-							{% endfor %}
-						</tr>
-					{% endfor %}
-				</table>
-			{% else %}
-				<p>No results found.</p>
-			{% endif %}
-
+				{% endfor %}
+			</table>
+		{% else %}
 			<p>
-				<a href="filter.php?logout">Logout</a>
+				No results found.
 			</p>
 		{% endif %}
+
+		<p>
+			<a	href="filter.php?logout">
+				Logout
+			</a>
+		</p>
 	</body>
 </html>

@@ -6,5 +6,6 @@ if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true)
 }
 
 echo "Welcome to the Home Page! <br>";
-echo "Go to your <a href='profile.php'>Profile</a>";
+echo "Go to your <a href='profile.php'>Profile</a><br>";
+echo "Go to <a href='filter.php'>Leaderboard</a>";
 ?>

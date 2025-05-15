@@ -61,6 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && !empty($verificationCode)) {
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/style.css">
     <title>Setup MFA</title>
 </head>
 <body>

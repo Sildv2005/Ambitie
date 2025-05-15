@@ -1,0 +1,32 @@
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: #000000;
+  color: white;
+}
+textarea,
+input {
+  width: auto;
+}
+h2,
+label {
+  color: white;
+}
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+  background-color: #444444;
+}
+th,
+td {
+  border: 1px solid black;
+  padding: 5px;
+  text-align: left;
+}
+th {
+  background-color: #888;
+}
+.error {
+  color: red;
+}

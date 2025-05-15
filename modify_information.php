@@ -96,4 +96,5 @@ function updateUserInfo($current_username, $new_username, $email, $phone, $passw
     Password: <input type="password" name="password"><br>
     <input type="submit" value="Update Information">
 </form>
+<link rel="stylesheet" href="./css/style.css">
 <div><?= htmlspecialchars($message) ?></div>

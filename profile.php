@@ -43,6 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['remove_mfa']) && !empt
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/style.css">
     <title>User Profile</title>
 </head>
 <body>

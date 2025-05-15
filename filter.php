@@ -1,38 +1,21 @@
 <?php
 
-// namespace main;
-
 use Twig\Environment;
 use Twig\Loader\FilesystemLoader;
-use Dotenv\Dotenv;
 
-session_start();
 require_once './vendor/autoload.php';
 
-// Load environment variables
-$dotenv = Dotenv::createImmutable('/var/www');
-$dotenv->load();
+session_start();
+if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
+    header('Location: login.php');
+    exit();
+}
 
-// Database Connection (Using .env variable)
-$db_password = $_ENV['DB_PASSWORD_ROOT'] ?? '';
-$db = new mysqli("localhost", "root", $db_password, "ambitie_game");
+// Database Connection
+$db = new mysqli("localhost", "ambitie_game", "ambitie_game", "ambitie_game");
 
 if ($db->connect_error) {
     die("Connection failed: " . $db->connect_error);
-}
-
-// Handle Login
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['username'], $_POST['password'])) {
-    $username = $db->real_escape_string($_POST['username']);
-    $password = $_POST['password']; // Use proper password hashing in production
-
-    $result = $db->query("SELECT * FROM mysql.user WHERE user='$username' LIMIT 1");
-    
-    if ($result && $result->num_rows > 0) {
-        $_SESSION['db_logged_in'] = true;
-    } else {
-        $error = "Invalid username or password.";
-    }
 }
 
 // Handle Logout
