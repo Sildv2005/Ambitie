@@ -12,12 +12,6 @@
 <body>
     <h2>Highscores</h2>
 
-    {% if not session.user_logged_in %}
-        <p>not logged in</p><br>
-    {% else %}
-        <p>logged in</p><br>
-    {% endif %}
-
     <form method="get">
         <label>Filter by Player Name:</label>
         <input type="text" name="filter" value="{{ filter|e }}">
