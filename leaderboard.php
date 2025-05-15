@@ -21,7 +21,7 @@ if ($db->connect_error) {
 // Handle Logout
 if (isset($_GET['logout'])) {
     session_destroy();
-    header("Location: filter.php");
+    header("Location: leaderboard.php");
     exit();
 }
 
@@ -55,7 +55,7 @@ $twig = new Environment($loader, [
 ]);
 
 // Render Template
-echo $twig->render('filter.twig', [
+echo $twig->render('leaderboard.twig', [
     'session' => $_SESSION,
     'error' => $error ?? null,
     'query_result' => $query_result ?? null,
