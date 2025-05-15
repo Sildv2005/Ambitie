@@ -62,6 +62,7 @@ $twig = new Environment($loader, [
 echo $twig->render('leaderboard.twig', [
     'session' => $_SESSION,
     'error' => $error ?? null,
+    'title' => 'Leaderboard',
     'query_result' => $query_result ?? null,
     'query_error' => $query_error ?? null,
     'filter' => htmlspecialchars($filter ?? '', ENT_QUOTES, 'UTF-8'),
