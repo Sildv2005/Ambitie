@@ -21,8 +21,8 @@ try
 {
     $sth->bindParam(':player_name', $_GET['player_name'], PDO::PARAM_STR);
     $sth->bindParam(':level', $_GET['level'], PDO::PARAM_INT);
-    $sth->bindParam(':total_time', $_GET['time'], PDO::PARAM_STR);
-    $sth->bindParam(':best_lap', $_GET['best_lap_time'], PDO::PARAM_STR);
+    $sth->bindParam(':time', $_GET['time'], PDO::PARAM_STR);
+    $sth->bindParam(':best_lap_time', $_GET['best_lap_time'], PDO::PARAM_STR);
     $sth->execute();
 } 
 catch(Exception $e) 
