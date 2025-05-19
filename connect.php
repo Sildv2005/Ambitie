@@ -13,7 +13,7 @@ $charset = 'utf8mb4';
 var_dump($pass);
 
 if (!$pass) {
-    echo "Error: Databse login credentials invalid. Make sure the host, database, username and password are correct.";
+    echo "Error: Databse login credentials invalid. Make sure the username and password are correct.";
     exit;
 }
 
