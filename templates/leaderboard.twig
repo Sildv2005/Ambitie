@@ -35,7 +35,7 @@
                     {% if session.user_logged_in %}
                         <td>
                             <form method="post" action="leaderboard.php" class="remove-button-form">
-                                <input type="hidden" name="remove_player_name" value="{{ row.player_name }}">
+                                <input type="hidden" name="remove_id" value="{{ row.id }}">
                                 <input type="submit" name="remove_time" value="Remove time">
                             </form>
                         </td>
