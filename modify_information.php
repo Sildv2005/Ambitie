@@ -89,6 +89,13 @@ function updateUserInfo($current_username, $new_username, $email, $phone, $passw
 }
 
 ?>
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="./css/style.css">
+    <title>Modify information</title>
+</head>
+
 <form method="post">
     New Username: <input type="text" name="new_username" value="<?= htmlspecialchars($_SESSION['username']) ?>"><br>
     Email: <input type="text" name="email"><br>

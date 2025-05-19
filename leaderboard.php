@@ -6,10 +6,6 @@ use Twig\Loader\FilesystemLoader;
 require_once './vendor/autoload.php';
 
 session_start();
-if (!isset($_SESSION['user_logged_in']) || $_SESSION['user_logged_in'] !== true) {
-    header('Location: login.php');
-    exit();
-}
 
 // Database Connection
 $db = new mysqli("localhost", "ambitie_game", "ambitie_game", "ambitie_game");
@@ -22,6 +18,14 @@ if ($db->connect_error) {
 if (isset($_GET['logout'])) {
     session_destroy();
     header("Location: leaderboard.php");
+    exit();
+}
+
+// Handle Time Removal
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_time'], $_POST['remove_player_name']) && !empty($_SESSION['user_logged_in'])) {
+    $player_name = $db->real_escape_string($_POST['remove_player_name']);
+    $db->query("DELETE FROM highscores WHERE player_name = '$player_name'");
+    header("Location: leaderboard.php" . (!empty($filter) ? "?filter=" . urlencode($filter) : ""));
     exit();
 }
 
@@ -58,6 +62,7 @@ $twig = new Environment($loader, [
 echo $twig->render('leaderboard.twig', [
     'session' => $_SESSION,
     'error' => $error ?? null,
+    'title' => 'Leaderboard',
     'query_result' => $query_result ?? null,
     'query_error' => $query_error ?? null,
     'filter' => htmlspecialchars($filter ?? '', ENT_QUOTES, 'UTF-8'),
