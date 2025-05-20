@@ -3,54 +3,58 @@
 <head>
     {% include '../partials/head.twig' %}
     <style>
-        table { width: 100%; border-collapse: collapse; margin-top: 20px; background-color: #444444; }
-        th, td { border: 1px solid black; padding: 5px; text-align: left; }
         th { background-color: #888; }
         .remove-button-form { display: inline; }
     </style>
 </head>
 <body>
-    <h2>Leaderboard</h2>
+    <div class="table">
+        <h2>Leaderboard</h2>
 
-    <form method="get">
-        <label>Filter by Player Name:</label>
-        <input type="text" name="filter" value="{{ filter|e }}">
-        <br><br>
-        <input type="submit" value="Apply Filter">
-    </form>
+        <form method="get">
+            <label>Filter by Player Name:</label>
+            <input type="text" name="filter" value="{{ filter|e }}">
+            <br><br>
+            <input type="submit" value="Apply Filter">
+        </form>
 
-    {% if query_result is defined %}
-        <h3>Results:</h3>
-        <table>
-            <tr>
-                {% if session.user_logged_in %}
-                    <th>Action</th>
-                {% endif %}
-                {% for column in query_result.columns %}
-                    <th>{{ column }}</th>
-                {% endfor %}
-            </tr>
-            {% for row in query_result.rows %}
+        {% if query_result is defined %}
+            <h3>Results:</h3>
+            <table>
                 <tr>
                     {% if session.user_logged_in %}
-                        <td>
-                            <form method="post" action="leaderboard.php" class="remove-button-form">
-                                <input type="hidden" name="player_id" value="{{ row.id }}">
-                                <input type="submit" name="remove_time" value="Remove time">
-                            </form>
-                        </td>
+                        <th>Action</th>
                     {% endif %}
-                    {% for value in row %}
-                        <td>{{ value }}</td>
+                    {% for column in query_result.columns %}
+                        <th>{{ column }}</th>
                     {% endfor %}
                 </tr>
-            {% endfor %}
-        </table>
-    {% else %}
-        <p>No results found.</p>
-    {% endif %}
+                {% for row in query_result.rows %}
+                    <tr>
+                        {% if session.user_logged_in %}
+                            <td>
+                                <form method="post" action="leaderboard.php" class="remove-button-form">
+                                    <input type="hidden" name="player_id" value="{{ row.id }}">
+                                    <input type="submit" name="remove_time" value="Remove time">
+                                </form>
+                            </td>
+                        {% endif %}
+                        {% for value in row %}
+                            <td>{{ value }}</td>
+                        {% endfor %}
+                    </tr>
+                {% endfor %}
+            </table>
+        {% else %}
+            <p>No results found.</p>
+        {% endif %}
 
-    <p><a href="index.php">Index</a></p>
-    <p><a href="leaderboard.php?logout">Logout</a></p>
+        <p><a href="index.php">Index</a></p>
+        {% if session.user_logged_in %}
+            <p><a href="leaderboard.php?logout">Logout</a></p>
+        {% else %}
+            <p><a href="login.php">Login</a></p>
+        {% endif %}
+    </div>
 </body>
 </html>
