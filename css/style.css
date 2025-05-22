@@ -1,8 +1,6 @@
 body {
   font-family: Arial, sans-serif;
   padding: 20px;
-  background-image: url("/background.png");
-  background-size: cover;
   color: white;
 }
 .table {
@@ -42,4 +40,14 @@ th {
 a {
   text-decoration: none;
   color: #999;
+}
+.background-img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1; /* optional, to push behind content */
 }
