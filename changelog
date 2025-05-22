@@ -1,5 +1,4 @@
-Title: Slight modifications
+Title: Change link color
 
 Changes:
-- Add black as background color
-- Move leaderboard to index and change leaderboard links to index, removed leaderboard.php after
+- Change the link color from 999 to 666 (hex)
