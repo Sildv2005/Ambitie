@@ -17,7 +17,7 @@ if ($db->connect_error) {
 // Handle Logout
 if (isset($_GET['logout'])) {
     session_destroy();
-    header("Location: index.php");
+    header("Location: /");
     exit();
 }
 
@@ -25,7 +25,7 @@ if (isset($_GET['logout'])) {
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['remove_time'], $_POST['player_id']) && !empty($_SESSION['user_logged_in'])) {
     $id = $db->real_escape_string($_POST['player_id']);
     $db->query("DELETE FROM highscores WHERE id = '$id'");
-    header("Location: index.php" . (!empty($filter) ? "?filter=" . urlencode($filter) : ""));
+    header("Location: /" . (!empty($filter) ? "?filter=" . urlencode($filter) : ""));
     exit();
 }
 

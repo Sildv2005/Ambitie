@@ -39,7 +39,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                         $_SESSION['username'] = $user['username'];
                         $_SESSION['user_id'] = $user['id'];
                         session_regenerate_id(true);
-                        header("Location: index.php");
+                        header("Location: /");
                         exit();
                     }
                 } else {
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
                 $_SESSION['user_id'] = $user['id'];
 		$_SESSION['email'] = $user['email'];
                 session_regenerate_id(true);
-                header("Location: index.php");
+                header("Location: /");
                 exit();
             }
         } else {

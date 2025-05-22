@@ -1,4 +1,4 @@
-Title: Change link color
+Title: Change index to /
 
 Changes:
-- Change the link color from 999 to 666 (hex)
+- Changed index.php links to save space
