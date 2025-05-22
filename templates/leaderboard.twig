@@ -2,14 +2,13 @@
 <html lang="en">
 <head>
     {% include '../partials/head.twig' %}
-    <style>
-        th { background-color: #888; }
-        .remove-button-form { display: inline; }
-    </style>
 </head>
 <body>
     <img src="/background.png" class="background-img" />
     <div class="table">
+        <div class="image-container">
+            <img src="/faded.png" class="faded-img" />
+        </div>
         <h2>Leaderboard</h2>
 
         <form method="get">
@@ -51,9 +50,9 @@
         {% endif %}
 
         {% if session.user_logged_in %}
-            <p><a href="/?logout">Logout</a></p>
+            <p><a href="/?logout" class="btn">Logout</a></p>
         {% else %}
-            <p><a href="login.php">Login</a></p>
+            <p><a href="login.php" class="btn">Login</a></p>
         {% endif %}
     </div>
 </body>

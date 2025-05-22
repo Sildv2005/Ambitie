@@ -24,7 +24,6 @@ table {
   margin-top: 20px;
   margin-left: auto;
   margin-right: auto;
-  /* opacity: 40%; */
 }
 th,
 td {
@@ -33,7 +32,7 @@ td {
   text-align: left;
 }
 th {
-  background-color: red;
+  background-color: #888;
 }
 .error {
   color: red;
@@ -51,4 +50,35 @@ a {
   object-fit: cover;
   object-position: center;
   z-index: -1; /* optional, to push behind content */
+}
+.faded-img {
+  position: absolute;
+  height: 80%;
+  width: 80%;
+  object-fit: cover;
+  object-position: center;
+  z-index: -1;
+  opacity: 50%;
+  overflow: hidden;
+}
+.image-container {
+  z-index: -1;
+  position: absolute;
+  width: 100%;             /* or any size you want */
+  height: 100%;           /* or auto, or use aspect-ratio */
+  overflow: hidden;
+}
+.btn {
+  display: inline-block;
+  padding: 0.5em 1em;
+  background-color: #007BFF;
+  color: white;
+  text-decoration: none;
+  border: none;
+  border-radius: 4px;
+  font-weight: bold;
+  cursor: pointer;
+}
+.btn:hover {
+  background-color: #0056b3;
 }

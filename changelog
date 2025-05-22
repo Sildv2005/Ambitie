@@ -1,4 +1,11 @@
-Title: Change index to /
+Title: Some modifications
 
 Changes:
-- Changed index.php links to save space
+- Removed style from leaderboard.twig (th and .remove-button-style)
+- Changed background color of variables row to #888
+- Added new css class seperately for fit to screen
+- Add faded image with special style to make text better visible
+- Added div around faded image to make faded background a little better
+- Added button class for login and logout button
+- Added css classes faded-img, image-container, btn and btn:hover
+- Removed opacity comment from table
