@@ -16,7 +16,7 @@ catch(PDOException $e)
 }
     
 
-$sth = $dbh->prepare('INSERT INTO highscores (player_name, level, time, best_lap_time) VALUES (:player_name, :level, :total_time, :best_lap);');
+$sth = $dbh->prepare('INSERT INTO highscores (player_name, level, time, best_lap_time) VALUES (:player_name, :level, :time, :best_lap_time);');
 try 
 {
     $sth->bindParam(':player_name', $_GET['player_name'], PDO::PARAM_STR);
