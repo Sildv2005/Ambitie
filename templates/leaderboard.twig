@@ -2,6 +2,27 @@
 <html lang="en">
 <head>
     {% include '../partials/head.twig' %}
+    <style>
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .pagination a.btn {
+            margin: 0 5px;
+            padding: 4px 8px;
+            background: #eee;
+            text-decoration: none;
+            color: #000;
+            border-radius: 4px;
+        }
+        .pagination .current-page {
+            margin: 0 5px;
+            padding: 4px 8px;
+            font-weight: bold;
+            background: #ccc;
+            border-radius: 4px;
+        }
+    </style>
 </head>
 <body>
     <img src="/background.png" class="background-img back" />
@@ -45,6 +66,30 @@
                     </tr>
                 {% endfor %}
             </table>
+
+            {# Pagination block #}
+            {% if pagination.total_pages > 1 %}
+                <div class="pagination">
+                    {% set base_url = "?filter=" ~ filter %}
+
+                    {% if pagination.page > 1 %}
+                        <a href="{{ base_url ~ '&page=' ~ (pagination.page - 1) }}" class="btn">Previous</a>
+                    {% endif %}
+
+                    {% for p in 1..pagination.total_pages %}
+                        {% if p == pagination.page %}
+                            <span class="current-page">{{ p }}</span>
+                        {% else %}
+                            <a href="{{ base_url ~ '&page=' ~ p }}" class="btn">{{ p }}</a>
+                        {% endif %}
+                    {% endfor %}
+
+                    {% if pagination.page < pagination.total_pages %}
+                        <a href="{{ base_url ~ '&page=' ~ (pagination.page + 1) }}" class="btn">Next</a>
+                    {% endif %}
+                </div>
+            {% endif %}
+
         {% else %}
             <p>No results found.</p>
         {% endif %}

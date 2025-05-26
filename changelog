@@ -1,6 +1,4 @@
-Title: CSS Optimisation
+Title: Added pagination
 
 Changes:
-- Added white css class and added it where needed
-- Added back css class and added it where needed
-- Combined classes which have padding left 20px
+- Added pagination for the leaderboard
