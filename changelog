@@ -1,4 +1,7 @@
-Title: Added id check
+Title: More CSS Optimisation
 
 Changes:
-- Added check that only shows the id column if you're logged in
+- Added padding-left class and asigned it to where needed
+- Removed white color from a few classes and asigned it to where needed
+- Added a few position related things into one class and asigned it to where needed
+- Changed z-index to be in .pos and image-container and removed back class
