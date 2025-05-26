@@ -1,4 +1,6 @@
-Title: Fix register and login page text not visible
+Title: Casual changes
 
 Changes:
-- Changed p, h1 and form text color to white on login and register pages
+- Removed register and login links on their oposite pages
+- Added header redirect to login on register page (only admin allowed to register other admins)
+- Removed p color white style as both are removed (links of login on register and oposite were inside p and are removed)

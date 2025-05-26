@@ -87,8 +87,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
         <input type="hidden" id="timezone" name="timezone">
         <input type="submit" value="Login">
     </form>
-
-    <p>Don't have an account? <a href="register.php">Register here</a></p>
 </body>
 <footer>
     <script src="./js/script.js"></script>

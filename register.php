@@ -2,6 +2,12 @@
 require 'connect.php';
 session_start();
 
+// Ensure the user is logged in
+if (!isset($_SESSION['user_logged_in']) || !$_SESSION['user_logged_in']) {
+    header('Location: login.php'); 
+    exit;
+}
+
 $message = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -62,6 +68,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <input type="submit" value="Register">
         <input type="submit" name="register_with_mfa" value="Register with MFA">
     </form>
-    <p>Already have an account? <a href="login.php">Login here</a>.</p>
 </body>
 </html>
