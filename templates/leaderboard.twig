@@ -137,54 +137,49 @@
     </style>
 </head>
 <body>
-    <img src="/background.png" class="background-img back" />
-    <div>
-        <div class="image-container back">
-            <img src="/faded.png" class="faded-img back" />
+    <img src="/background.png" class="background-img pos" />
+    <div class="table white">
+        <div class="image-container">
+            <img src="/faded.png" class="faded-img pos" />
         </div>
-        <h2>Leaderboard</h2>
+        <h2 class="padding-left white">Leaderboard</h2>
 
-        <form method="get">
-            <label>Filter by Player Name:</label>
+        <form method="get" class="padding-left">
+            <label class="padding-left white">Filter by Player Name:</label>
             <input type="text" name="filter" value="{{ filter|e }}">
             <input type="submit" value="Apply Filter">
         </form>
 
         {% if query_result is defined %}
-        <div class="table">
             <h3>Results:</h3>
             <table>
-                <thead>
+                <tr>
+                    {% if session.user_logged_in %}
+                        <th>Action</th>
+                    {% endif %}
+                    {% for column in query_result.columns %}
+                        {% if column != 'id' or session.user_logged_in %}
+                            <th>{{ column }}</th>
+                        {% endif %}
+                    {% endfor %}
+                </tr>
+                {% for row in query_result.rows %}
                     <tr>
                         {% if session.user_logged_in %}
-                            <th>Action</th>
+                            <td>
+                                <form method="post" action="/" class="remove-button-form">
+                                    <input type="hidden" name="player_id" value="{{ row.id }}">
+                                    <input type="submit" name="remove_time" value="Remove time">
+                                </form>
+                            </td>
                         {% endif %}
-                        {% for column in query_result.columns %}
-                            {% if column != 'id' or session.user_logged_in %}
-                                <th>{{ column }}</th>
+                        {% for key, value in row %}
+                            {% if key != 'id' or session.user_logged_in %}
+                                <td>{{ value }}</td>
                             {% endif %}
                         {% endfor %}
                     </tr>
-                </thead>
-                <tbody>
-                    {% for row in query_result.rows %}
-                        <tr>
-                            {% if session.user_logged_in %}
-                                <td data-label="Action">
-                                    <form method="post" action="/" class="remove-button-form">
-                                        <input type="hidden" name="player_id" value="{{ row.id }}">
-                                        <input type="submit" name="remove_time" value="Remove time">
-                                    </form>
-                                </td>
-                            {% endif %}
-                            {% for key, value in row %}
-                                {% if key != 'id' or session.user_logged_in %}
-                                    <td data-label="{{ key }}">{{ value }}</td>
-                                {% endif %}
-                            {% endfor %}
-                        </tr>
-                    {% endfor %}
-                </tbody>
+                {% endfor %}
             </table>
         </div>
 
@@ -213,7 +208,7 @@
             <p>No results found.</p>
         {% endif %}
 
-        <footer>
+        <footer class="padding-left">
             {% if session.user_logged_in %}
                 <p><a href="/?logout" class="btn white">Logout</a></p>
             {% else %}

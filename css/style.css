@@ -8,7 +8,6 @@ body {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
-  color: white;
 }
 textarea,
 input {
@@ -16,7 +15,6 @@ input {
 }
 h2,
 label {
-  color: white;
   padding-top: 20px;
 }
 table {
@@ -44,13 +42,10 @@ a {
   color: #666;
 }
 .background-img {
-  position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100%;
-  object-fit: cover;
-  object-position: center;
 }
 .faded-img {
   position: relative;
@@ -64,6 +59,7 @@ a {
   width: 80%;
   height: 80%;
   overflow: hidden;
+  z-index: -1;
 }
 .btn {
   display: inline-block;
@@ -78,16 +74,15 @@ a {
 .btn:hover {
   background-color: #0056b3;
 }
-h3,
-footer,
-form,
-h2,
-label {
+.padding-left {
   padding-left: 20px;
 }
 .white {
   color: white;
 }
-.back {
+.pos {
   z-index: -1;
+  position: absolute;
+  object-fit: cover;
+  object-position: center;
 }

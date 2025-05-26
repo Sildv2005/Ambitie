@@ -1,5 +1,7 @@
-Title: Responsive test (WIP)
+Title: More CSS Optimisation
 
 Changes:
-- Modified a few things to make the page more responsive
-- Note: this is being tested and therefore marked as worked in progress
+- Added padding-left class and asigned it to where needed
+- Removed white color from a few classes and asigned it to where needed
+- Added a few position related things into one class and asigned it to where needed
+- Changed z-index to be in .pos and image-container and removed back class
