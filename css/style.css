@@ -2,12 +2,12 @@ body {
   font-family: Arial, sans-serif;
   padding: 20px;
   background-color: black;
-  color: white;
 }
 .table {
   margin-left: auto;
   margin-right: auto;
   width: 80%;
+  color: white;
 }
 textarea,
 input {
@@ -53,8 +53,6 @@ a {
 }
 .faded-img {
   position: absolute;
-  height: 80%;
-  width: 80%;
   object-fit: cover;
   object-position: center;
   z-index: -1;
@@ -64,8 +62,8 @@ a {
 .image-container {
   z-index: -1;
   position: absolute;
-  width: 100%;             /* or any size you want */
-  height: 100%;           /* or auto, or use aspect-ratio */
+  width: 80%;
+  height: 80%;
   overflow: hidden;
 }
 .btn {
