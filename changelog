@@ -1,4 +1,5 @@
-Title: Added id check
+Title: Responsive test (WIP)
 
 Changes:
-- Added check that only shows the id column if you're logged in
+- Modified a few things to make the page more responsive
+- Note: this is being tested and therefore marked as worked in progress

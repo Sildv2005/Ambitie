@@ -2,31 +2,143 @@
 <html lang="en">
 <head>
     {% include '../partials/head.twig' %}
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
-        .pagination {
-            margin-top: 20px;
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: sans-serif;
+            background: #f0f0f0;
+        }
+
+        .table {
+            max-width: 95%;
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        h2, h3 {
             text-align: center;
         }
-        .pagination a.btn {
-            margin: 0 5px;
-            padding: 4px 8px;
-            background: #eee;
-            text-decoration: none;
-            color: #000;
-            border-radius: 4px;
+
+        form {
+            text-align: center;
+            margin-bottom: 20px;
         }
+
+        input[type="text"], input[type="submit"] {
+            padding: 8px;
+            margin: 5px;
+            font-size: 16px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 14px;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 10px;
+            text-align: left;
+            word-wrap: break-word;
+        }
+
+        th {
+            background-color: #f7f7f7;
+        }
+
+        .remove-button-form {
+            display: inline-block;
+        }
+
+        .pagination {
+            text-align: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .pagination a.btn,
         .pagination .current-page {
-            margin: 0 5px;
-            padding: 4px 8px;
-            font-weight: bold;
-            background: #ccc;
+            margin: 4px;
+            padding: 6px 12px;
+            background: #ddd;
             border-radius: 4px;
+            text-decoration: none;
+            color: black;
+            display: inline-block;
+        }
+
+        .pagination .current-page {
+            background: #bbb;
+            font-weight: bold;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .btn.white {
+            background: white;
+            border: 1px solid #ccc;
+            padding: 6px 12px;
+            text-decoration: none;
+            color: black;
+            border-radius: 6px;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            table, thead, tbody, th, td, tr {
+                /display: block;
+            }
+
+            thead {
+                display: none;
+            }
+
+            tr {
+                margin-bottom: 15px;
+                border: 1px solid #ddd;
+                border-radius: 6px;
+                padding: 10px;
+                background: #fafafa;
+            }
+
+            td {
+                padding: 10px;
+                position: relative;
+                padding-left: 50%;
+            }
+
+            td::before {
+                content: attr(data-label);
+                position: absolute;
+                left: 10px;
+                top: 10px;
+                font-weight: bold;
+                white-space: nowrap;
+            }
+
+            .remove-button-form input[type="submit"] {
+                width: 100%;
+                margin-top: 10px;
+            }
+        }
+        .table h3 {
+            color: black;
         }
     </style>
 </head>
 <body>
     <img src="/background.png" class="background-img back" />
-    <div class="table">
+    <div>
         <div class="image-container back">
             <img src="/faded.png" class="faded-img back" />
         </div>
@@ -35,43 +147,47 @@
         <form method="get">
             <label>Filter by Player Name:</label>
             <input type="text" name="filter" value="{{ filter|e }}">
-            <br><br>
             <input type="submit" value="Apply Filter">
         </form>
 
         {% if query_result is defined %}
+        <div class="table">
             <h3>Results:</h3>
             <table>
-                <tr>
-                    {% if session.user_logged_in %}
-                        <th>Action</th>
-                    {% endif %}
-                    {% for column in query_result.columns %}
-                        {% if column != 'id' or session.user_logged_in %}
-                            <th>{{ column }}</th>
-                        {% endif %}
-                    {% endfor %}
-                </tr>
-                {% for row in query_result.rows %}
+                <thead>
                     <tr>
                         {% if session.user_logged_in %}
-                            <td>
-                                <form method="post" action="/" class="remove-button-form">
-                                    <input type="hidden" name="player_id" value="{{ row.id }}">
-                                    <input type="submit" name="remove_time" value="Remove time">
-                                </form>
-                            </td>
+                            <th>Action</th>
                         {% endif %}
-                        {% for key, value in row %}
-                            {% if key != 'id' or session.user_logged_in %}
-                                <td>{{ value }}</td>
+                        {% for column in query_result.columns %}
+                            {% if column != 'id' or session.user_logged_in %}
+                                <th>{{ column }}</th>
                             {% endif %}
                         {% endfor %}
                     </tr>
-                {% endfor %}
+                </thead>
+                <tbody>
+                    {% for row in query_result.rows %}
+                        <tr>
+                            {% if session.user_logged_in %}
+                                <td data-label="Action">
+                                    <form method="post" action="/" class="remove-button-form">
+                                        <input type="hidden" name="player_id" value="{{ row.id }}">
+                                        <input type="submit" name="remove_time" value="Remove time">
+                                    </form>
+                                </td>
+                            {% endif %}
+                            {% for key, value in row %}
+                                {% if key != 'id' or session.user_logged_in %}
+                                    <td data-label="{{ key }}">{{ value }}</td>
+                                {% endif %}
+                            {% endfor %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
             </table>
+        </div>
 
-            {# Pagination block #}
             {% if pagination.total_pages > 1 %}
                 <div class="pagination">
                     {% set base_url = "?filter=" ~ filter %}
@@ -93,7 +209,6 @@
                     {% endif %}
                 </div>
             {% endif %}
-
         {% else %}
             <p>No results found.</p>
         {% endif %}

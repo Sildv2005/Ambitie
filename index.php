@@ -36,7 +36,7 @@ $filter = $_GET['filter'] ?? '';
 $filter_safe = $db->real_escape_string($filter);
 
 // Pagination settings
-$per_page = 20;
+$per_page = 200;
 $page = isset($_GET['page']) && is_numeric($_GET['page']) ? (int) $_GET['page'] : 1;
 $offset = ($page - 1) * $per_page;
 

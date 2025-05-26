@@ -2,6 +2,7 @@ body {
   font-family: Arial, sans-serif;
   padding: 20px;
   background-color: black;
+  position: relative;
 }
 .table {
   margin-left: auto;
@@ -47,12 +48,12 @@ a {
   top: 0;
   left: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   object-fit: cover;
   object-position: center;
 }
 .faded-img {
-  position: absolute;
+  position: relative;
   object-fit: cover;
   object-position: center;
   opacity: 50%;
