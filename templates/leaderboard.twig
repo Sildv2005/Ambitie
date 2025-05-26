@@ -4,10 +4,10 @@
     {% include '../partials/head.twig' %}
 </head>
 <body>
-    <img src="/background.png" class="background-img" />
+    <img src="/background.png" class="background-img back" />
     <div class="table">
-        <div class="image-container">
-            <img src="/faded.png" class="faded-img" />
+        <div class="image-container back">
+            <img src="/faded.png" class="faded-img back" />
         </div>
         <h2>Leaderboard</h2>
 
@@ -51,9 +51,9 @@
 
         <footer>
             {% if session.user_logged_in %}
-                <p><a href="/?logout" class="btn">Logout</a></p>
+                <p><a href="/?logout" class="btn white">Logout</a></p>
             {% else %}
-                <p><a href="login.php" class="btn">Login</a></p>
+                <p><a href="login.php" class="btn white">Login</a></p>
             {% endif %}
         </footer>
     </div>

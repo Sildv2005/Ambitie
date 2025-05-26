@@ -76,11 +76,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['login'])) {
     <title>Login</title>
 </head>
 <body>
-    <h1>Login</h1>
+    <h1 class="white">Login</h1>
     <?php if (!empty($message)): ?>
         <p><?= htmlspecialchars($message) ?></p>
     <?php endif; ?>
-    <form method="post">
+    <form method="post" class="white">
         Username/Email/Phone: <input type="text" name="login" required><br>
         Password: <input type="password" name="password" required><br>
         MFA Code (if applicable): <input type="text" name="mfa_code"><br>

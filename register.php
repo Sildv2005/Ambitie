@@ -57,9 +57,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <title>Register</title>
 </head>
 <body>
-    <h1>Register</h1>
+    <h1 class="white">Register</h1>
     <div><?= htmlspecialchars($message) ?></div>
-    <form method="post">
+    <form method="post" class="white">
         Username: <input type="text" name="username" required><br>
         Password: <input type="password" name="password" required><br>
         Confirm Password: <input type="password" name="confirm_password" required><br>

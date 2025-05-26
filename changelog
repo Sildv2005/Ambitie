@@ -1,6 +1,6 @@
-Title: Casual changes
+Title: CSS Optimisation
 
 Changes:
-- Removed register and login links on their oposite pages
-- Added header redirect to login on register page (only admin allowed to register other admins)
-- Removed p color white style as both are removed (links of login on register and oposite were inside p and are removed)
+- Added white css class and added it where needed
+- Added back css class and added it where needed
+- Combined classes which have padding left 20px
