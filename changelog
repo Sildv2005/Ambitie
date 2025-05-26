@@ -1,6 +1,4 @@
-Title: Added padding + added footer
+Title: Fix register and login page text not visible
 
 Changes:
-- Added footer and moved check for login / logout button in it
-- Added padding-left of 20px for h2 + label, form, h3 and footer
-- Added padding-top of 20px for h2 + label
+- Changed p, h1 and form text color to white on login and register pages
