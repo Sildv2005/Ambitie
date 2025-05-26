@@ -47,7 +47,9 @@
                         <th>Action</th>
                     {% endif %}
                     {% for column in query_result.columns %}
-                        <th>{{ column }}</th>
+                        {% if column != 'id' or session.user_logged_in %}
+                            <th>{{ column }}</th>
+                        {% endif %}
                     {% endfor %}
                 </tr>
                 {% for row in query_result.rows %}
@@ -60,8 +62,10 @@
                                 </form>
                             </td>
                         {% endif %}
-                        {% for value in row %}
-                            <td>{{ value }}</td>
+                        {% for key, value in row %}
+                            {% if key != 'id' or session.user_logged_in %}
+                                <td>{{ value }}</td>
+                            {% endif %}
                         {% endfor %}
                     </tr>
                 {% endfor %}

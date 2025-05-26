@@ -1,4 +1,4 @@
-Title: Added pagination
+Title: Added id check
 
 Changes:
-- Added pagination for the leaderboard
+- Added check that only shows the id column if you're logged in
