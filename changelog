@@ -1,6 +1,6 @@
-Title: CSS Changes
+Title: Added padding + added footer
 
 Changes:
-- Moved color white from body to .table
-- Removed .faded-img height and width
-- Changed .img-container height and width to 80% and removed the comment behind it
+- Added footer and moved check for login / logout button in it
+- Added padding-left of 20px for h2 + label, form, h3 and footer
+- Added padding-top of 20px for h2 + label

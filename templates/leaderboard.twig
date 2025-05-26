@@ -49,11 +49,13 @@
             <p>No results found.</p>
         {% endif %}
 
-        {% if session.user_logged_in %}
-            <p><a href="/?logout" class="btn">Logout</a></p>
-        {% else %}
-            <p><a href="login.php" class="btn">Login</a></p>
-        {% endif %}
+        <footer>
+            {% if session.user_logged_in %}
+                <p><a href="/?logout" class="btn">Logout</a></p>
+            {% else %}
+                <p><a href="login.php" class="btn">Login</a></p>
+            {% endif %}
+        </footer>
     </div>
 </body>
 </html>
