@@ -1,7 +1,27 @@
-Title: More CSS Optimisation
+Title: Responsive modifications
 
 Changes:
-- Added padding-left class and asigned it to where needed
-- Removed white color from a few classes and asigned it to where needed
-- Added a few position related things into one class and asigned it to where needed
-- Changed z-index to be in .pos and image-container and removed back class
+- Added a div with class table around results instead of full page
+- Removed grey / faded background and classes related
+- Added text-center class and asigned it where needed
+- Moved evrything from .pos to .background-img and removed .pos
+- Removed .remove-buttom-form
+- Removed padding td from leaderboard to style and changed it to 8px in style
+- Removed tr background
+- Removed accidental /
+- Removed white class from login and logout button
+- Moved style from .btn.white in leaderboard to .btn in style
+- Removed margin-top 20px from .pagination
+- Removed th background style from leaderboard
+- Removed most style from th, td in leaderboard besides padding and changed padding to 8px
+- Removed table, form and h2, h3 style from leaderboard
+- Moved body margin 0 from leaderboard to style, changed background to white and removed rest of body style
+- Moved background, border-radius, overflow-x and boxshadow style from .table leaderboard to .table style, changed the width to 50% and added margin-top of 20px
+- Removed rest of .table style left in leaderboard
+- In style:
+- - Changed table width to 95%
+- - Added margin-bottom of 30px to table
+- - Removed background-color, text-decoration and border from .btn
+- - Added background, border, color and border-radius to .btn
+- - Changed .btn:hover background-color to #888
+- - Added footer with margin-top of 30px
