@@ -1,4 +1,4 @@
-Title: Made background scrollable (finally)
+Title: Change background
 
 Changes:
-- Changed the background image to be scrollable by changing background-size to 100vw 100vh and background-attachment to fixed
+- Changed the background image to an actual game screenshot
