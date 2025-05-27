@@ -3,43 +3,15 @@ body {
   padding: 20px;
   margin: 0;
   background-color: black;
-  position: relative;
-}
-.table {
-  margin-left: auto;
-  margin-right: auto;
-  width: 50%;
-  background: white;
-  border-radius: 12px;
-  overflow-x: auto;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
-  margin-top: 20px;
+  background-image: url('/background.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-attachment: scroll; /* allow it to scroll with the page */
+  background-position: center top;
 }
 textarea,
 input {
   width: auto;
-}
-h2,
-label {
-  padding-top: 20px;
-}
-table {
-  width: 95%;
-  border-collapse: collapse;
-  background-color: #444444;
-  margin-top: 20px;
-  margin-left: auto;
-  margin-right: auto;
-  margin-bottom: 30px;
-}
-th,
-td {
-  border: 1px solid black;
-  padding: 8px;
-  text-align: left;
-}
-th {
-  background-color: #888;
 }
 .error {
   color: red;
@@ -47,40 +19,4 @@ th {
 a {
   text-decoration: none;
   color: #666;
-}
-.background-img {
-  z-index: -1;
-  position: absolute;
-  object-fit: cover;
-  object-position: center;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100%;
-}
-.btn {
-  display: inline-block;
-  padding: 0.5em 1em;
-  border-radius: 4px;
-  font-weight: bold;
-  cursor: pointer;
-  background: white;
-  border: 1px solid #333;
-  color: black;
-  border-radius: 6px;
-}
-.btn:hover {
-  background-color: #888;
-}
-.padding-left {
-  padding-left: 20px;
-}
-.white {
-  color: white;
-}
-.text-center {
-  text-align: center;
-}
-footer {
-  margin-top: 30px;
 }

@@ -8,25 +8,28 @@
             background-color: white;
         }
 
-        input[type="text"], input[type="submit"] {
-            padding: 8px;
-            margin: 5px;
-            font-size: 16px;
+        .table {
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+            background: white;
+            border-radius: 12px;
+            overflow-x: auto;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
         }
 
-        .pagination {
-            flex-wrap: wrap;
+        h2,
+        label {
+            padding-top: 20px;
         }
+
 
         .pagination a.btn,
         .pagination .current-page {
             margin: 4px;
             padding: 6px 12px;
-            background: #ddd;
             border-radius: 4px;
-            text-decoration: none;
-            color: black;
-            display: inline-block;
         }
 
         .pagination .current-page {
@@ -34,55 +37,76 @@
             font-weight: bold;
         }
 
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            table, thead, tbody, th, td, tr {
-                display: block;
-            }
-
-            thead {
-                display: none;
-            }
-
-            tr {
-                margin-bottom: 15px;
-                border: 1px solid #ddd;
-                border-radius: 6px;
-                padding: 10px;
-            }
-
-            td {
-                position: relative;
-                padding-left: 50%;
-            }
-
-            td::before {
-                content: attr(data-label);
-                position: absolute;
-                left: 10px;
-                top: 10px;
-                font-weight: bold;
-                white-space: nowrap;
-            }
-
-        }
         .table h3 {
             color: black;
+        }
+
+        table {
+            width: 95%;
+            border-collapse: collapse;
+            background-color: #444444;
+            margin-top: 20px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 30px;
+        }
+
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #888;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 0.5em 1em;
+            border-radius: 4px;
+            font-weight: bold;
+            cursor: pointer;
+            background: white;
+            border: 1px solid #333;
+            color: black;
+            border-radius: 6px;
+        }
+
+        .btn:hover {
+            background-color: #888;
+        }
+
+
+        .padding-left {
+            padding-left: 20px;
+        }
+
+        .white {
+            color: white;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        footer {
+            margin-top: 30px;
         }
     </style>
 </head>
 <body>
-    <img src="/background.png" class="background-img" />
-    <div class="white">
-        <h2 class="padding-left white text-center">Leaderboard</h2>
+    <div>
+        <h2 class="padding-left text-center">Leaderboard</h2>
 
         <form method="get" class="padding-left text-center">
-            <label class="padding-left white">Filter by Player Name:</label>
+            <label class="padding-left">Filter by Player Name:</label>
             <input type="text" name="filter" value="{{ filter|e }}">
             <input type="submit" value="Apply Filter">
         </form>
 
-        <div class="table">
+        <div class="table white">
             {% if query_result is defined %}
                 <h3 class="text-center">Results:</h3>
                 <table>
