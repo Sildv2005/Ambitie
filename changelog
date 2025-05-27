@@ -1,13 +1,4 @@
-Title: Leaderboard modifications
+Title: Made background scrollable (finally)
 
 Changes:
-- Removed remove_time style that made button bigger
-- Removed flex-wrap style from .pagination
-- Changed items per page to 20
-- Removed white class from leaderboard heading and "Filter by Player Name:"
-- Made a few body css changes for better bacground
-- Removed background image from body and removed .background-img style
-- Moved white class from div around everything to div around results
-- Removed whole @media block in css
-- Removed background, text-decoration, color and display from .pagination a.btn, .pagination .current-page
-- Moved following from style to leaderboard.twig: .text-center, .white, .padding-left, .btn, .btn:hover th+td, th, table, footer, .table, h2+label
+- Changed the background image to be scrollable by changing background-size to 100vw 100vh and background-attachment to fixed
