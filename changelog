@@ -1,4 +1,12 @@
-Title: Create README.md
+Title: Added sorting functionality
 
 Changes:
-- Created a README for the repo
+- index.php:
+- - Added handling for sort_by and order
+- - SQL Query Update to Support Sorting
+- - Stored sort_by and order in the Pagination Array
+- - No filter check and sort hereby for id
+- leaderboard.twig
+- - Preserved sort_by and order in Remove Button URLs
+- - Preserved Sorting in Pagination Links
+- - Added Sort Selection Form

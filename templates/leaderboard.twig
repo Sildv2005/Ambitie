@@ -24,7 +24,6 @@
             padding-top: 20px;
         }
 
-
         .pagination a.btn,
         .pagination .current-page {
             margin: 4px;
@@ -78,7 +77,6 @@
             background-color: #888;
         }
 
-
         .padding-left {
             padding-left: 20px;
         }
@@ -94,20 +92,44 @@
         footer {
             margin-top: 30px;
         }
+
+        .error {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div>
         <h2 class="padding-left text-center">Leaderboard</h2>
 
+        {% if query_error %}
+            <p class="error">{{ query_error }}</p>
+        {% endif %}
+
         <form method="get" class="padding-left text-center">
             <label class="padding-left">Filter by Player Name:</label>
             <input type="text" name="filter" value="{{ filter|e }}">
-            <input type="submit" value="Apply Filter">
+
+            <label class="padding-left">Sort by:</label>
+            <select name="sort_by">
+                <option value="player_name" {% if pagination.sort_by == 'player_name' %}selected{% endif %}>Player Name</option>
+                <option value="time" {% if pagination.sort_by == 'time' %}selected{% endif %}>Total Time</option>
+                <option value="best_lap_time" {% if pagination.sort_by == 'best_lap_time' %}selected{% endif %}>Best Lap</option>
+            </select>
+
+            <label class="padding-left">Order:</label>
+            <select name="order">
+                <option value="asc" {% if pagination.order == 'asc' %}selected{% endif %}>Ascending</option>
+                <option value="desc" {% if pagination.order == 'desc' %}selected{% endif %}>Descending</option>
+            </select>
+
+            <input type="submit" value="Apply">
         </form>
 
         <div class="table white">
-            {% if query_result is defined %}
+            {% if query_result is defined and query_result.rows is not empty %}
                 <h3 class="text-center">Results:</h3>
                 <table>
                     <tr>
@@ -124,7 +146,7 @@
                         <tr>
                             {% if session.user_logged_in %}
                                 <td>
-                                    <form method="post" action="/">
+                                    <form method="post" action="/?filter={{ filter|url_encode }}&sort_by={{ pagination.sort_by|url_encode }}&order={{ pagination.order|url_encode }}&page={{ pagination.page }}">
                                         <input type="hidden" name="player_id" value="{{ row.id }}">
                                         <input type="submit" name="remove_time" value="Remove time">
                                     </form>
@@ -138,33 +160,31 @@
                         </tr>
                     {% endfor %}
                 </table>
-            </div>
-
-                {% if pagination.total_pages > 1 %}
-                    <div class="pagination text-center">
-                        {% set base_url = "?filter=" ~ filter %}
-
-                        {% if pagination.page > 1 %}
-                            <a href="{{ base_url ~ '&page=' ~ (pagination.page - 1) }}" class="btn">Previous</a>
-                        {% endif %}
-
-                        {% for p in 1..pagination.total_pages %}
-                            {% if p == pagination.page %}
-                                <span class="current-page">{{ p }}</span>
-                            {% else %}
-                                <a href="{{ base_url ~ '&page=' ~ p }}" class="btn">{{ p }}</a>
-                            {% endif %}
-                        {% endfor %}
-
-                        {% if pagination.page < pagination.total_pages %}
-                            <a href="{{ base_url ~ '&page=' ~ (pagination.page + 1) }}" class="btn">Next</a>
-                        {% endif %}
-                    </div>
-                {% endif %}
             {% else %}
-                <p>No results found.</p>
+                <p class="text-center">No results found.</p>
             {% endif %}
         </div>
+
+        {% if pagination.total_pages > 1 %}
+            <div class="pagination text-center">
+                {% set base_url = "?filter=" ~ filter|url_encode ~ "&sort_by=" ~ pagination.sort_by|url_encode ~ "&order=" ~ pagination.order|url_encode %}
+                {% if pagination.page > 1 %}
+                    <a href="{{ base_url ~ "&page=" ~ (pagination.page - 1) }}" class="btn">Previous</a>
+                {% endif %}
+
+                {% for p in 1..pagination.total_pages %}
+                    {% if p == pagination.page %}
+                        <span class="current-page">{{ p }}</span>
+                    {% else %}
+                        <a href="{{ base_url ~ "&page=" ~ p }}" class="btn">{{ p }}</a>
+                    {% endif %}
+                {% endfor %}
+
+                {% if pagination.page < pagination.total_pages %}
+                    <a href="{{ base_url ~ "&page=" ~ (pagination.page + 1) }}" class="btn">Next</a>
+                {% endif %}
+            </div>
+        {% endif %}
 
         <footer class="padding-left text-center">
             {% if session.user_logged_in %}
