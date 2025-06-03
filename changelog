@@ -1,12 +1,4 @@
-Title: Added sorting functionality
+Title: Update dummy time
 
 Changes:
-- index.php:
-- - Added handling for sort_by and order
-- - SQL Query Update to Support Sorting
-- - Stored sort_by and order in the Pagination Array
-- - No filter check and sort hereby for id
-- leaderboard.twig
-- - Preserved sort_by and order in Remove Button URLs
-- - Preserved Sorting in Pagination Links
-- - Added Sort Selection Form
+- Updated dummy times to new time format
